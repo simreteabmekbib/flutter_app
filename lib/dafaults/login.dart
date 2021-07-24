@@ -20,28 +20,47 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login Page'),
-        backgroundColor: Color(0xFF7BC74D),
+        centerTitle: true,
+        toolbarHeight: 36,
+        title: Text(
+          'Login',
+          style: TextStyle(
+            fontSize: 14,
+          ),
+        ),
+        backgroundColor: Color(0xff7ECA9C),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(18),
         child: Column(
           children: [
             TextFormField(
               controller: emailController,
-              decoration: InputDecoration(
-                hintText: 'email',
+              decoration: const InputDecoration(
+                labelText: 'Email',
+                labelStyle: TextStyle(
+                  fontSize: 12,
+                )
+                // hintText: 'Plant Name',
               ),
             ),
             
             TextFormField(
               controller: passwordController,
-              decoration: InputDecoration(
-                hintText: 'password',
+              decoration: const InputDecoration(
+                labelText: 'Password',
+                labelStyle: TextStyle(
+                  fontSize: 12,
+                )
+                // hintText: 'Plant Name',
               ),
             ),
-            
+            SizedBox(height: 20,),
             ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xff393E46),
+                  onPrimary: Color(0xff7BC74D)
+                ),
                 onPressed: () {
                   Posts post = Posts(email: emailController.text, password: passwordController.text);
                   createPost(url, body: post.toMap())

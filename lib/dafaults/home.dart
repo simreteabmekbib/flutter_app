@@ -10,6 +10,17 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        // toolbarHeight: 36,
+        title: Text(
+          'Home',
+          style: TextStyle(
+            // fontSize: 14,
+          ),
+        ),
+        backgroundColor: Color(0xff7ECA9C),
+      ),
       // body: Padding(
       //   padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
       //   child: Container(
