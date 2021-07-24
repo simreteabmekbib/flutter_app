@@ -11,6 +11,8 @@ class Defaults {
     'Search',
     'Category',
     'Settings',
+    'Login',
+    'Sign In',
     'Logout',
   ];
 
@@ -20,6 +22,8 @@ class Defaults {
     Icons.search,
     Icons.category,
     Icons.settings,
+    Icons.login,
+    Icons.arrow_right_alt_rounded,
     Icons.logout,
   ];
 }

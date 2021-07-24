@@ -1,3 +1,5 @@
+import 'package:blue_moon_flatter/dafaults/login.dart';
+import 'package:blue_moon_flatter/dafaults/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import './dafaults/defaults.dart';
@@ -39,6 +41,11 @@ class _MainPageState extends State<MainPage> {
     Center(
       child: Text('Spam'),
     ),
+    Login(),
+    SignUp(),
+    Center(
+      child: Text('logout'),
+    ),
   ];
 
   Function updateState(int index) {
@@ -55,9 +62,9 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Navigation Bar Example',
+          'ብዝሃ ሕይወት',
         ),
-        backgroundColor: Color(0xFF7BC74D),
+        backgroundColor: Color(0xFF4AA96C),
       ),
       body: pages[indexClicked],
       drawer: Drawer(
@@ -74,7 +81,7 @@ class _MainPageState extends State<MainPage> {
               // ),
               padding: EdgeInsets.all(0),
               child: Container(
-                color: Color(0xFF7BC74D),
+                color: Color(0xFF4AA96C),
                 child: Column(
                   children: [
                     const SizedBox(
@@ -137,6 +144,14 @@ class _MainPageState extends State<MainPage> {
                   AppDrawerTile(
                     index: 5,
                     onTap: updateState(5),
+                  ),
+                  AppDrawerTile(
+                    index: 6,
+                    onTap: updateState(6),
+                  ),
+                  AppDrawerTile(
+                    index: 7,
+                    onTap: updateState(7),
                   ),
                   const SizedBox(
                     height: 30,
@@ -218,21 +233,21 @@ class AppDrawerTile extends StatelessWidget {
       child: ListTile(
         onTap: onTap,
         selected: indexClicked == index,
-        selectedTileColor: Defaults.drawerSelectedTileColor,
+        selectedTileColor: Colors.grey[300],
         leading: Icon(
           Defaults.drawerItemIcon[index],
-          size: 35,
+          size: 22,
           color: indexClicked == index
-              ? Defaults.drawerItemSelectedColor
+              ? Color(0xffF55C47)
               : Defaults.drawerItemColor,
         ),
         title: Text(
           Defaults.drawerItemText[index],
           style: GoogleFonts.sanchez(
-            fontSize: 20,
+            fontSize:15,
             fontWeight: FontWeight.w500,
             color: indexClicked == index
-                ? Defaults.drawerItemSelectedColor
+                ? Color(0xff564A4A)
                 : Defaults.drawerItemColor,
           ),
         ),
