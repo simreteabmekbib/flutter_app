@@ -1,3 +1,4 @@
+import 'package:blue_moon_flatter/dafaults/buy_confirm.dart';
 import 'package:flutter/material.dart';
 
 class Detail extends StatelessWidget {
@@ -59,7 +60,12 @@ class Detail extends StatelessWidget {
                             primary: Color(0xff393E46),
                             onPrimary: Color(0xff7BC74D),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => BuyConfirm()),
+                            );
+                          },
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 22.0),
                             child: Text(
