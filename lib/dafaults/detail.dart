@@ -8,22 +8,22 @@ class Detail extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Some Image Detail'),
-        backgroundColor: Color(0XFF7BC74D),
+        backgroundColor: Color(0xFF4AA96C),
       ),
       body: SingleChildScrollView(
         child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+                padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                 child: Image(
                   image: AssetImage('assets/images/profile.jpg'),
-                  fit: BoxFit.contain,
-                  width: 180,
+                  fit: BoxFit.cover,
+                  width: 375,
                   height: 180,
                 ),
               ),  
               Card(
-                margin: EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                margin: EdgeInsets.fromLTRB(18, 10, 18, 10),
                 child: Column(
                   children: [
                     Padding(
