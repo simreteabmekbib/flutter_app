@@ -62,9 +62,22 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'ብዝሃ ሕይወት',
+          'Find Green',
         ),
         backgroundColor: Color(0xFF4AA96C),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search,
+            color: Colors.grey[100],),
+            onPressed: () {},
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.shopping_cart),
+            color: Colors.grey[100],
+          ),
+          SizedBox(width: 10),
+        ],
       ),
       body: pages[indexClicked],
       drawer: Drawer(
