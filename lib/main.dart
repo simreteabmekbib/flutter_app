@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import './dafaults/defaults.dart';
 import './dafaults/home.dart';
-import 'dafaults/cart.dart';
+import './dafaults/cart.dart';
+import 'dafaults/plantCard.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,7 +29,7 @@ class _MainPageState extends State<MainPage> {
   final pages = [
     Home(),
     Center(
-      child: Text('Starred'),
+      child: Text('Sent'),
     ),
     Center(
       child: Text('Sent'),
@@ -60,7 +61,7 @@ class _MainPageState extends State<MainPage> {
         title: Text(
           'Navigation Bar Example',
         ),
-        backgroundColor: Color(0xFF62eb34),
+        backgroundColor: Color(0xFF7BC74D),
       ),
       body: pages[indexClicked],
       drawer: Drawer(
@@ -77,7 +78,7 @@ class _MainPageState extends State<MainPage> {
               // ),
               padding: EdgeInsets.all(0),
               child: Container(
-                color: Color(0xFFFF9800),
+                color: Color(0xFF7BC74D),
                 child: Column(
                   children: [
                     const SizedBox(
@@ -91,7 +92,7 @@ class _MainPageState extends State<MainPage> {
                       height: 10,
                     ),
                     Text(
-                      'John Rambo',
+                      'simri Mek',
                       style: GoogleFonts.sanchez(
                         fontSize: 15,
                         color: Colors.white,
@@ -102,7 +103,7 @@ class _MainPageState extends State<MainPage> {
                       height: 5,
                     ),
                     Text(
-                      'john@rambo.com',
+                      'sim@gmail.com',
                       style: GoogleFonts.sanchez(
                         fontSize: 10,
                         color: Colors.white,
