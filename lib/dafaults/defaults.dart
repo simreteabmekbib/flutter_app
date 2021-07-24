@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class Defaults {
   static final Color drawerItemColor = Colors.blueGrey;
   static final Color drawerItemSelectedColor = Colors.white;
-  static final Color drawerSelectedTileColor = Color(0xFFFF9800);
+  static final Color drawerSelectedTileColor = Color(0xFF7BC74D);
 
   static final drawerItemText = [
     'Order',
-    'Sell',
+    'Post',
     'Search',
     'Category',
     'Settings',
@@ -16,7 +16,7 @@ class Defaults {
 
   static final drawerItemIcon = [
     Icons.shopping_cart,
-    Icons.sell,
+    Icons.add,
     Icons.search,
     Icons.category,
     Icons.settings,
