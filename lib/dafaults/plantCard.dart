@@ -2,90 +2,60 @@ import 'package:blue_moon_flatter/dafaults/detail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget buildCard(BuildContext context, imgPath){
-  return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            child: Container(
-              padding: EdgeInsets.all(10),
-              height: 160,
-              width: 140,
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Hero(
-                tag: "\$234",
-                child: Image(image: AssetImage(imgPath),
-                fit: BoxFit.cover,),
+Widget buildCard(BuildContext context, imgPath) {
+  return Center(
+    child: Padding(
+      padding: const EdgeInsets.all(8),
+      child:  Card(
+        elevation: 8,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              alignment: Alignment.bottomLeft,
+              children: [
+                Ink.image(image: 
+                AssetImage(imgPath),
+                height: 100,
+                width: 152,
+                fit: BoxFit.fitWidth,),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text('plant name'),
+                  Text('plant description'),
+                ],
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20 / 4),
-            child: Text(
-              'Plant Name',
-              style: TextStyle(color: Color(0xFFACACAC)),
+            ButtonBar(children: <Widget>[
+              TextButton(
+                child: Text('Detail', 
+                  style: TextStyle(color: Color(0xff4AA96C), fontWeight: FontWeight.w400)),
+                onPressed: () {
+                  // To do
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Detail()),
+                  );
+                },
             ),
-          ),
-          Text(
-            "\$234",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          )
-        ],
-      );
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xff303242),
+              ),
+              child: Text('Buy', 
+              style: TextStyle(color: Color(0xff9FE6A0)),),
+              onPressed: () {
+                // To do
+              },
+            ),
+          ],),
+          ],),),
+    ),
+  );
 }
-
-// Widget buildCard(BuildContext context, my) {
-//   return Center(
-//     child: Padding(
-//       padding: const EdgeInsets.all(10),
-//       child:  Card(
-//         child: Column(
-//           mainAxisSize: MainAxisSize.min,
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Stack(
-//               alignment: Alignment.bottomLeft,
-//               children: [
-//                 Ink.image(image: 
-//                 AssetImage(my),
-//                 height: 100,
-//                 fit: BoxFit.fitWidth,),
-//               ],
-//             ),
-//             Padding(padding: EdgeInsets.all(16),
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: <Widget>[
-//                 Text(
-//                   'here plant',
-//                   style: TextStyle(color: Colors.black54),
-//                 ),
-//                 Text('plant name'),
-//                 Text('plant description'),
-//               ],),
-//             ),
-//             ButtonBar(children: <Widget>[
-//             TextButton(
-//               child: Text('Detail'),
-//               onPressed: () {
-//                 // To do
-//                 Navigator.push(
-//                   context,
-//                   MaterialPageRoute(builder: (context) => Detail()),
-//                 );
-//               },
-//             ),
-//             ElevatedButton(
-//               child: Text('Buy'),
-//               onPressed: () {
-//                 // To do
-//               },
-//             ),
-//           ],),
-//           ],),),
-//     ),
-//   );
-// }
