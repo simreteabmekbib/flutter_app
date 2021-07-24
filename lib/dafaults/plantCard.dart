@@ -1,7 +1,8 @@
+import 'package:blue_moon_flatter/dafaults/detail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget buildCard(my) {
+Widget buildCard(BuildContext context, my) {
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(10),
@@ -36,6 +37,10 @@ Widget buildCard(my) {
               child: Text('Detail'),
               onPressed: () {
                 // To do
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Detail()),
+                );
               },
             ),
             ElevatedButton(

@@ -15,8 +15,8 @@ class Home extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              buildCard('assets/images/profile.jpg'),
-              buildCard('assets/images/profile.jpg'),
+              buildCard(context, 'assets/images/profile.jpg'),
+              buildCard(context, 'assets/images/profile.jpg'),
             ],
           ),
         ],
