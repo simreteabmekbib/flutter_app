@@ -30,6 +30,7 @@ class _PostState extends State<Post> {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color(0Xff393E46),
         fixedColor: Color(0xff7BC74D),
+        unselectedItemColor: Colors.grey[200],
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.edit),
