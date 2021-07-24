@@ -15,7 +15,7 @@ Widget buildCard(my) {
               children: [
                 Ink.image(image: 
                 AssetImage(my),
-                height: 200,
+                height: 100,
                 fit: BoxFit.fitWidth,),
               ],
             ),
@@ -31,7 +31,20 @@ Widget buildCard(my) {
                 Text('plant description'),
               ],),
             ),
-            ButtonBar(),
+            ButtonBar(children: <Widget>[
+            TextButton(
+              child: Text('Detail'),
+              onPressed: () {
+                // To do
+              },
+            ),
+            ElevatedButton(
+              child: Text('Buy'),
+              onPressed: () {
+                // To do
+              },
+            ),
+          ],),
           ],),),
     ),
   );
