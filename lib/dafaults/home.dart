@@ -3,6 +3,7 @@ import 'cart.dart';
 import 'signup.dart';
 import 'plantCard.dart';
 import 'login.dart';
+import 'post.dart';
 
 
 class Home extends StatelessWidget {
@@ -25,7 +26,7 @@ class Home extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => SignUp()),
+            MaterialPageRoute(builder: (context) => Post()),
           );
         },
         tooltip: 'Increment',

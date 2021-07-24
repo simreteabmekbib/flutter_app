@@ -4,6 +4,7 @@ import './dafaults/defaults.dart';
 import './dafaults/home.dart';
 import './dafaults/cart.dart';
 import 'dafaults/plantCard.dart';
+import 'dafaults/post.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,12 +29,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final pages = [
     Home(),
-    Center(
-      child: Text('Sent'),
-    ),
-    Center(
-      child: Text('Sent'),
-    ),
+    Post(),
     Center(
       child: Text('Drafts'),
     ),
