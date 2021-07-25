@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 var loggedIn = false;
-var userId;
+var currentUser;
 
 class Login extends StatefulWidget {
 
@@ -70,9 +70,10 @@ class _LoginState extends State<Login> {
                   Posts post = Posts(email: emailController.text, password: passwordController.text);
                   createPost(url, body: post.toMap())
                     .then((value) {
-                      if (value == 'login'){
+                      if (value['message'] == 'login'){
                         print('logged in');
                         loggedIn = true;
+                        currentUser = value;
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => Home()),
@@ -105,10 +106,10 @@ Future createPost(String url, {required Map body}) async {
     // print("Message returned: " + json.decode(response.body)['message']);
     // return Posts.fromJson(json.decode(response.body));
     if (json.decode(response.body)['message'] == 'login'){
-      userId = emailController.text;
+      
     } 
     
-    return json.decode(response.body)['message'];
+    return json.decode(response.body);
   });
 }
 class Posts{
