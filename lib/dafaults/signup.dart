@@ -35,7 +35,7 @@ class _SignUpState extends State<SignUp> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.symmetric(horizontal: 22),
           child: Column(
             children: [
               TextFormField(
@@ -48,6 +48,7 @@ class _SignUpState extends State<SignUp> {
                   // hintText: 'Plant Name',
                 ),
               ),
+              SizedBox(height: 6,),
               TextFormField(
                 controller: username,
                 decoration: const InputDecoration(
@@ -58,6 +59,7 @@ class _SignUpState extends State<SignUp> {
                   // hintText: 'Plant Name',
                 ),
               ),
+              SizedBox(height: 6,),
               TextFormField(
                 controller: phoneNumber,
                 decoration: const InputDecoration(
@@ -68,6 +70,7 @@ class _SignUpState extends State<SignUp> {
                   // hintText: 'Plant Name',
                 ),
               ),
+              SizedBox(height: 6,),
               TextFormField(
                 controller: passwordController,
                 decoration: const InputDecoration(
@@ -78,13 +81,14 @@ class _SignUpState extends State<SignUp> {
                   // hintText: 'Plant Name',
                 ),
               ),
+              SizedBox(height: 6,),
               TextFormField(
                 controller: confirmPassword,
                 decoration: const InputDecoration(
                   labelText: 'Confirm Password',
                   labelStyle: TextStyle(
                     fontSize: 12,
-                  )
+                  ),
                   // hintText: 'Plant Name',
                 ),
               ),
@@ -125,7 +129,24 @@ class _SignUpState extends State<SignUp> {
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Login()),);
                 },
-                child: Text('Already have an account? Login',
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Already have an account?',),
+                    SizedBox(width: 1),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Login()),
+                        );
+                      },
+                      child: Text('Login'), 
+                      style: TextButton.styleFrom(
+                        primary: Color(0xff7BC74D),
+                      ),
+                    ),
+                  ],
                 ),
               )
             ],

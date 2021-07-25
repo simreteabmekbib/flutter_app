@@ -131,9 +131,9 @@ class _UpdateApprovalState extends State<UpdateApproval> {
 
   Widget postCard(BuildContext context, id, name, location, String use, approved, imgPath){
     return Card(
-      margin: EdgeInsets.all(0),
+      margin: EdgeInsets.symmetric(vertical: 10),
       shadowColor: Colors.grey[300],
-      elevation: 8,
+      elevation: 12,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8)
       ),
@@ -141,7 +141,7 @@ class _UpdateApprovalState extends State<UpdateApproval> {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/profile.jpg'),
+            image: NetworkImage(imgPath),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.circular(8),
@@ -157,18 +157,26 @@ class _UpdateApprovalState extends State<UpdateApproval> {
               children: [
                 Text('$name',
                   style: TextStyle(
-                  color: Colors.white
+                  color: Colors.white,
+                  fontSize: 24,
+                  letterSpacing: 4,
+                  fontWeight: FontWeight.bold
                 ),),
                 SizedBox(height: 4,),
                 Text('$location',
                   style: TextStyle(
-                  color: Colors.white
+                  color: Color(0xff7ECA9C),
+                  fontSize: 18,
                 ),),
-                SizedBox(height: 4,),
-                Text(
-                  use,
-                  style: TextStyle(
-                    color: Colors.white
+                SizedBox(height: 14,),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: Text(
+                    use + "lorem ipsum dolor imet lorem ipsum dolor imet",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                    ),
                   ),
                 ),
                 SizedBox(height: 14,),
@@ -186,7 +194,7 @@ class _UpdateApprovalState extends State<UpdateApproval> {
                         });
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xff7BC74D)
+                        primary: Color(0xff7ECA9C)
                       ),
                       child: Text(
                         'Approve',
@@ -195,7 +203,7 @@ class _UpdateApprovalState extends State<UpdateApproval> {
                         ),
                       ),
                     ),
-                    SizedBox(width: 10,),
+                    SizedBox(width: 18,),
                     ElevatedButton(
                       onPressed: () {
                         setState(() {
@@ -207,7 +215,7 @@ class _UpdateApprovalState extends State<UpdateApproval> {
                         });
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xffF55C47)
+                        primary: Color(0xffEE6F57)
                       ),
                       child: Text(
                         'Decline',

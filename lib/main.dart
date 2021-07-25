@@ -73,17 +73,13 @@ class _MainPageState extends State<MainPage> {
     Home(),
     FlutterSession().get('email') != '' ? Post() : SignUp(),
     Center(
-      child: Text('Drafts'),
+      child: Text('Categories/filters'),
     ),
     Center(
-      child: Text('Trash'),
-    ),
-    Center(
-      child: Text('Spam'),
+      child: Text('Settings'),
     ),
     Login(),
     SignUp(),
-    Home(),
     UpdateApproval(),
   ];
   Function updateState(int index) {
@@ -145,14 +141,15 @@ class _MainPageState extends State<MainPage> {
                 if (this.search.icon == Icons.search) {
                   this.search = Icon(Icons.cancel);
                   this.appTit = Container(
-                    height: 50,
+                    height: 35,
                     child: TextField(
+                      cursorColor: Colors.white,
                       controller: searchController,
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'search',
+                        // border: OutlineInputBorder(),
+                        hintText: 'Search',
                         filled: true,
-                        fillColor: Colors.white,
+                        fillColor: Color(0xff7ECA9C),
                       ),
                       onChanged: (text) {
                         searchBody = text != '' ? getPlantData(text) : null;
@@ -259,20 +256,12 @@ class _MainPageState extends State<MainPage> {
                     index: 5,
                     onTap: updateState(5),
                   ),
-                  AppDrawerTile(
-                    index: 6,
-                    onTap: updateState(6),
-                  ),
-                  AppDrawerTile(
-                    index: 7,
-                    onTap: updateState(7),
-                  ),
                   const SizedBox(
                     height: 30,
                   ),
                   AppDrawerTile(
-                    index: 8,
-                    onTap: updateState(8),
+                    index: 6,
+                    onTap: updateState(6),
                   )
                   // const AppDrawerDivider(),
                   // const SizedBox(
