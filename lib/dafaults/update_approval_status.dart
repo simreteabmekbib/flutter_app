@@ -57,12 +57,9 @@ class _UpdateApprovalState extends State<UpdateApproval> {
 
     if (response.statusCode == 200){
       List<dynamic> values = [];
+      values = json.decode(response.body);
 
-      var resbody = json.decode(response.body); 
-
-      var isEmpty = resbody.map((entry) => (entry['name'])).toList().length == 0? true: false;
-
-      if (!isEmpty){
+      if (values.length > 0){
         for (int i = 0; i < values.length; i++){
           if (values[i] != null){
             Map<String, dynamic> map = values[i];
@@ -118,12 +115,12 @@ class _UpdateApprovalState extends State<UpdateApproval> {
             } else {
               return Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: GridView.builder(
+                child: snapshot.data!.length < 1? Center(
+                      child: Text('No Pending Approvals'),
+                ) : GridView.builder(
                     itemCount: snapshot.data!.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1, childAspectRatio: 1, mainAxisSpacing: 10),
-                    itemBuilder:  (context, index) => snapshot.data!.length < 1? Container(
-                      child: Text('No Pending Approvals'),
-                    ) : postCard(context, snapshot.data[index].id, snapshot.data[index].name, snapshot.data[index].location, snapshot.data[index].use, snapshot.data[index].approved, snapshot.data[index].imgPath),
+                    itemBuilder:  (context, index) => postCard(context, snapshot.data[index].id, snapshot.data[index].name, snapshot.data[index].location, snapshot.data[index].use, snapshot.data[index].approved, snapshot.data[index].imgPath),
                 ),
               );
             }
