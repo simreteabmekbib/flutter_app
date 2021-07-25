@@ -150,6 +150,7 @@ Future createPost(String url, {required Map body}) async {
       Login();
     }
     print("Message returned: " + json.decode(response.body)['username']);
+
     return json.decode(response.body)['username'];
   });
 }
@@ -186,5 +187,4 @@ class Posts {
     map["confirmPassword"] = confirmPassword;
 
     return map;
-  }
-}
+  }}

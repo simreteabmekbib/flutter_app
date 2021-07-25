@@ -1,11 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:blue_moon_flatter/dafaults/login.dart';
 import 'package:blue_moon_flatter/dafaults/signup.dart';
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import './dafaults/defaults.dart';
 import './dafaults/home.dart';
-import './dafaults/cart.dart';
-import 'dafaults/plantCard.dart';
 import 'dafaults/post.dart';
 
 void main() {
