@@ -2,6 +2,7 @@ import 'package:blue_moon_flatter/dafaults/home.dart';
 import 'package:blue_moon_flatter/dafaults/post.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_session/flutter_session.dart';
 import 'dart:convert';
 
 var loggedIn = false;
@@ -39,6 +40,11 @@ class _LoginState extends State<Login> {
         padding: const EdgeInsets.all(18),
         child: Column(
           children: [
+            FutureBuilder(
+              future: FlutterSession().get('email'),
+              builder: (context,snapshot){
+              return Text(snapshot.hasData ?snapshot.data.toString():'Loading');
+            }),
             TextFormField(
               controller: emailController,
               decoration: const InputDecoration(
@@ -106,7 +112,7 @@ Future createPost(String url, {required Map body}) async {
     // print("Message returned: " + json.decode(response.body)['message']);
     // return Posts.fromJson(json.decode(response.body));
     if (json.decode(response.body)['message'] == 'login'){
-      
+        FlutterSession().set('email', emailController.text);
     } 
     
     return json.decode(response.body);
