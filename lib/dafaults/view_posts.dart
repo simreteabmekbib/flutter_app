@@ -1,4 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class ViewPosts extends StatefulWidget {
   const ViewPosts({ Key? key }) : super(key: key);
@@ -7,15 +11,75 @@ class ViewPosts extends StatefulWidget {
   _ViewPostsState createState() => _ViewPostsState();
 }
 
+class Plant {
+  String name;
+  String location;
+  String use;
+  String approved;
+
+  Plant(this.name, this.location, this.use, this.approved);
+
+  Plant.fromJson(Map json)
+      : name = json['name'],
+        location = json['location'],
+        use = json['use'],
+        approved = json['approved'];
+
+  Map toJson() {
+    return {'name': name, 'location': location, 'use': use, 'approved': approved};
+  }
+}
+
 class _ViewPostsState extends State<ViewPosts> {
+
+  List<Plant> plants = [];
+
+  getPlants() async{
+    final response = await http.get(Uri.parse("http://localhost:5000/api/v1/user/plants"));
+
+    if (response.statusCode == 200){
+      List<dynamic> values = [];
+      values = json.decode(response.body);
+
+      if (values.length > 0){
+        for (int i = 0; i < values.length; i++){
+          if (values[i] != null){
+            Map<String, dynamic> map = values[i];
+            plants.add(Plant.fromJson(map));
+          }
+        }
+      }
+      for (Plant plant in plants) {
+        // print("Name: ${plant.name}  Approved: ${plant.approved}");
+      }
+      return plants;
+
+    } else {
+      throw Exception('Failed to load plants');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    // print(plants);
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-      child: GridView.builder(
-        itemCount: 10,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.9, mainAxisSpacing: 10),
-        itemBuilder: (context, index) => postCard(Icons.done),
+      child: FutureBuilder(
+        future: getPlants(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          print(plants);
+          if (snapshot.data == null) {
+            return Container(
+              child: Center(child: Text('Loading...'),),
+            );
+          } else {
+            return GridView.builder(
+              itemCount: snapshot.data!.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.9, mainAxisSpacing: 10),
+              itemBuilder: (context, index) => postCard(snapshot.data[index].name, snapshot.data[index].location, snapshot.data[index].use, snapshot.data[index].approved),
+            );
+          }
+        },
       ),
       // child: Column(
       //   children: [
@@ -28,7 +92,7 @@ class _ViewPostsState extends State<ViewPosts> {
   }
 }
 
-Widget postCard(icon){
+Widget postCard(name, location, String use, approved){
   return Card(
     margin: EdgeInsets.all(10),
     shadowColor: Colors.grey[300],
@@ -54,24 +118,25 @@ Widget postCard(icon){
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Plant Name',
+              Text('$name',
                 style: TextStyle(
                 color: Colors.white
               ),),
               SizedBox(height: 4,),
-              Text('Plant Location',
+              Text('$location',
                 style: TextStyle(
                 color: Colors.white
               ),),
               SizedBox(height: 4,),
-              Text('Plant Use',
+              Text(
+                use.length < 12? use: use.substring(0, 12),
               style: TextStyle(
                 color: Colors.white
               ),),
               SizedBox(height: 4,),
               Icon(
-                icon,
-                color: icon == Icons.close?  Colors.red: icon == Icons.done? Colors.green: Colors.amber,
+                approved == 'false'? Icons.close: approved == 'true'? Icons.done: Icons.help,
+                color: approved == 'false'?  Colors.red: approved == 'true'? Colors.green: Colors.amber,
                 size: 42,
               )
             ],
