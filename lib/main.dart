@@ -1,3 +1,4 @@
+import 'package:blue_moon_flatter/dafaults/update_approval_status.dart';
 import 'package:flutter/material.dart';
 import 'package:blue_moon_flatter/dafaults/login.dart';
 import 'package:blue_moon_flatter/dafaults/signup.dart';
@@ -45,6 +46,7 @@ class _MainPageState extends State<MainPage> {
     Center(
       child: Text('logout'),
     ),
+    UpdateApproval(),
   ];
 
   Function updateState(int index) {
@@ -188,6 +190,10 @@ class _MainPageState extends State<MainPage> {
                   const SizedBox(
                     height: 30,
                   ),
+                  AppDrawerTile(
+                    index: 8,
+                    onTap: updateState(8),
+                  )
                   // const AppDrawerDivider(),
                   // const SizedBox(
                   //   height: 10,
