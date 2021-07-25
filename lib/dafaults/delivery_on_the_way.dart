@@ -40,6 +40,8 @@ class DeliveryOnTheWay extends StatelessWidget {
                   fontSize: 16.5,
                 ),
               ),
+              SizedBox(height: 50,),
+              Icon(Icons.motorcycle, size: 80, color: Color(0xff7BC74D),),
             ],
           ),
         ),
