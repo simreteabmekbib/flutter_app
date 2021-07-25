@@ -1,3 +1,4 @@
+import 'package:blue_moon_flatter/dafaults/home.dart';
 import 'package:flutter/material.dart';
 
 class DeliveryOnTheWay extends StatelessWidget {
@@ -7,6 +8,15 @@ class DeliveryOnTheWay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: new IconButton(
+          icon: new Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Home()),
+            );
+          },
+        ),
         centerTitle: true,
         toolbarHeight: 36,
         title: Text(
