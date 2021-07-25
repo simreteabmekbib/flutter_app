@@ -10,6 +10,17 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        // toolbarHeight: 36,
+        title: Text(
+          'Home',
+          style: TextStyle(
+            // fontSize: 14,
+          ),
+        ),
+        backgroundColor: Color(0xff7ECA9C),
+      ),
       // body: Padding(
       //   padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
       //   child: Container(
@@ -53,12 +64,19 @@ class Home extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFF7BC74D),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Post()),
-          );
+          if(loggedIn){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Post()),
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SignUp()),
+            );
+          }
         },
-        tooltip: 'Increment',
+        tooltip: 'Post',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

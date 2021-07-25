@@ -12,7 +12,7 @@ class Defaults {
     'Category',
     'Settings',
     'Login',
-    'Sign In',
+    'Sign Up',
     'Logout',
   ];
 

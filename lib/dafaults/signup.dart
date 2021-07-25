@@ -1,3 +1,4 @@
+import 'package:blue_moon_flatter/dafaults/home.dart';
 import 'package:flutter/material.dart';
 import 'package:blue_moon_flatter/dafaults/login.dart';
 
@@ -22,56 +23,113 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign Up Page'),
-        backgroundColor: Color(0xFF7BC74D),
+        centerTitle: true,
+        toolbarHeight: 36,
+        title: Text(
+          'Sign Up',
+          style: TextStyle(
+            fontSize: 14,
+          ),
+        ),
+        backgroundColor: Color(0xff7ECA9C),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [
-            TextFormField(
-              controller: emailController,
-              decoration: InputDecoration(
-                hintText: 'email',
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            children: [
+              TextFormField(
+                controller: emailController,
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  labelStyle: TextStyle(
+                    fontSize: 12,
+                  )
+                  // hintText: 'Plant Name',
+                ),
               ),
-            ),
-            TextFormField(
-              controller: username,
-              decoration: InputDecoration(
-                hintText: 'username',
+              TextFormField(
+                controller: username,
+                decoration: const InputDecoration(
+                  labelText: 'Username',
+                  labelStyle: TextStyle(
+                    fontSize: 12,
+                  )
+                  // hintText: 'Plant Name',
+                ),
               ),
-            ),
-            TextFormField(
-              controller: phoneNumber,
-              decoration: InputDecoration(
-                hintText: 'phone number',
+              TextFormField(
+                controller: phoneNumber,
+                decoration: const InputDecoration(
+                  labelText: 'Phone Number',
+                  labelStyle: TextStyle(
+                    fontSize: 12,
+                  )
+                  // hintText: 'Plant Name',
+                ),
               ),
-            ),
-            TextFormField(
-              controller: passwordController,
-              decoration: InputDecoration(
-                hintText: 'password',
+              TextFormField(
+                controller: passwordController,
+                decoration: const InputDecoration(
+                  labelText: 'Password',
+                  labelStyle: TextStyle(
+                    fontSize: 12,
+                  )
+                  // hintText: 'Plant Name',
+                ),
               ),
-            ),
-            TextFormField(
-              controller: confirmPassword,
-              decoration: InputDecoration(
-                hintText: 'confirm password',
+              TextFormField(
+                controller: confirmPassword,
+                decoration: const InputDecoration(
+                  labelText: 'Confirm Password',
+                  labelStyle: TextStyle(
+                    fontSize: 12,
+                  )
+                  // hintText: 'Plant Name',
+                ),
               ),
-            ),
-            ElevatedButton(
+              SizedBox(height: 20,),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xff393E46),
+                    onPrimary: Color(0xff7BC74D)
+                  ),
+                  onPressed: () {
+                    Posts post = Posts(
+                      email: emailController.text,
+                      password: passwordController.text,
+                      username: username.text,
+                      phoneNumber: phoneNumber.text,
+                      confirmPassword: confirmPassword.text,
+                    );
+                    createPost(url, body: post.toMap())
+                    .then((value) {
+                      if (value != ""){
+                        print('signed up');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Home()),
+                        );
+                      } else {
+                        print('not signed up');
+                      }
+                    });
+                  },
+                  child: Text('Register'),
+              ),
+              SizedBox(height: 30,),
+              TextButton(
+                style: TextButton.styleFrom(
+                  primary: Color(0xff393E46),
+                ),
                 onPressed: () {
-                  Posts post = Posts(
-                    email: emailController.text,
-                    password: passwordController.text,
-                    username: username.text,
-                    phoneNumber: phoneNumber.text,
-                    confirmPassword: confirmPassword.text,
-                  );
-                  createPost(url, body: post.toMap());
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Login()),);
                 },
-                child: Text('Register')),
-          ],
+                child: Text('Already have an account? Login',
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -92,7 +150,8 @@ Future createPost(String url, {required Map body}) async {
       Login();
     }
     print("Message returned: " + json.decode(response.body)['username']);
-    return Posts.fromJson(json.decode(response.body));
+
+    return json.decode(response.body)['username'];
   });
 }
 
@@ -128,5 +187,4 @@ class Posts {
     map["confirmPassword"] = confirmPassword;
 
     return map;
-  }
-}
+  }}
