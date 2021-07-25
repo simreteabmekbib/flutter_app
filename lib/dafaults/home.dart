@@ -64,12 +64,19 @@ class Home extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFF7BC74D),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Post()),
-          );
+          if(loggedIn){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Post()),
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SignUp()),
+            );
+          }
         },
-        tooltip: 'Increment',
+        tooltip: 'Post',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

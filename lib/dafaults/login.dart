@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+var loggedIn = false;
+
 class Login extends StatefulWidget {
 
   @override
@@ -67,6 +69,7 @@ class _LoginState extends State<Login> {
                     .then((value) {
                       if (value == 'login'){
                         print('logged in');
+                        loggedIn = true;
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => Home()),

@@ -32,7 +32,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final pages = [
     Home(),
-    Post(),
+    loggedIn? Post(): SignUp(),
     Center(
       child: Text('Drafts'),
     ),

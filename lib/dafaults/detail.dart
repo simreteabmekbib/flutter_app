@@ -1,4 +1,6 @@
 import 'package:blue_moon_flatter/dafaults/buy_confirm.dart';
+import 'package:blue_moon_flatter/dafaults/login.dart';
+import 'package:blue_moon_flatter/dafaults/signup.dart';
 import 'package:flutter/material.dart';
 
 class Detail extends StatelessWidget {
@@ -61,10 +63,18 @@ class Detail extends StatelessWidget {
                             onPrimary: Color(0xff7BC74D),
                           ),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => BuyConfirm()),
-                            );
+                            if (loggedIn){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => BuyConfirm()),
+                              );
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => SignUp()),
+                              );
+                            }
+                            
                           },
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 22.0),
