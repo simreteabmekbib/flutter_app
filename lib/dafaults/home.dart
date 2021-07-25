@@ -100,10 +100,17 @@ class _HomeState extends State<Home> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFF7BC74D),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => Post()),
-          );
+          if(loggedIn){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Post()),
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SignUp()),
+            );
+          }
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),
