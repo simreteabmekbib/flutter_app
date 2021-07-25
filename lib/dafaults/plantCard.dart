@@ -47,7 +47,7 @@ Widget buildCard(BuildContext context, name, use, imgPath) {
                     // To do
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Detail()),
+                      MaterialPageRoute(builder: (context) => Detail(name: name,)),
                     );
                   },
                 ),
