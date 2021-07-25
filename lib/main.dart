@@ -30,7 +30,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final pages = [
     Home(),
-    loggedIn? Post(): SignUp(),
+    loggedIn ? Post() : SignUp(),
     Center(
       child: Text('Drafts'),
     ),
@@ -56,23 +56,43 @@ class _MainPageState extends State<MainPage> {
     };
   }
 
+  Icon search = Icon(
+    Icons.search,
+    color: Colors.grey[100],
+  );
+  Widget appTit = Text('Find Green');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Find Green',
-        ),
+        title: appTit,
         backgroundColor: Color(0xFF4AA96C),
         actions: [
           IconButton(
-            icon: Icon(Icons.search,
-            color: Colors.grey[100],),
-            onPressed: () {},
+            
+            onPressed: () {
+              setState(() {
+                if (this.search.icon == Icons.search) {
+                  this.search = Icon(Icons.cancel);
+                  this.appTit = TextField(
+                    
+                  );
+                } else {
+                  this.search = Icon(Icons.search);
+                  this.appTit = Text(
+                    'Find Green'
+                  );
+                }
+              });
+
+            },
+            icon: search,
+            
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.more_vert),
             color: Colors.grey[100],
           ),
           SizedBox(width: 10),
@@ -83,9 +103,9 @@ class _MainPageState extends State<MainPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            DrawerHeader( 
+            DrawerHeader(
               // decoration: BoxDecoration(
-                
+
               //   image: DecorationImage(
               //     fit: BoxFit.fill,
               //     image: AssetImage('assets/images/drawer.jpg'),
@@ -256,7 +276,7 @@ class AppDrawerTile extends StatelessWidget {
         title: Text(
           Defaults.drawerItemText[index],
           style: GoogleFonts.sanchez(
-            fontSize:15,
+            fontSize: 15,
             fontWeight: FontWeight.w500,
             color: indexClicked == index
                 ? Color(0xff564A4A)
