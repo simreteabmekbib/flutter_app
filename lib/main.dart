@@ -6,6 +6,9 @@ import 'package:google_fonts/google_fonts.dart';
 import './dafaults/defaults.dart';
 import './dafaults/home.dart';
 import 'dafaults/post.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import './dafaults/plantCard.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,10 +25,43 @@ class MyApp extends StatelessWidget {
 }
 
 var indexClicked = 0;
+var searchBody;
+final searchController = TextEditingController();
 
 class MainPage extends StatefulWidget {
   @override
   _MainPageState createState() => _MainPageState();
+}
+
+class Plant {
+  String name;
+  String location;
+  String use;
+  String approved;
+  String imgPath;
+  var price;
+
+  Plant(this.name, this.location, this.use, this.approved, this.imgPath,
+      this.price);
+
+  Plant.fromJson(Map json)
+      : name = json['name'],
+        location = json['location'],
+        use = json['use'],
+        approved = json['approved'],
+        imgPath = json['imagePath'],
+        price = json['price'];
+
+  Map toJson() {
+    return {
+      'name': name,
+      'location': location,
+      'use': use,
+      'approved': approved,
+      'imagePath': imgPath,
+      'price': price
+    };
+  }
 }
 
 class _MainPageState extends State<MainPage> {
@@ -48,7 +84,6 @@ class _MainPageState extends State<MainPage> {
     ),
     UpdateApproval(),
   ];
-
   Function updateState(int index) {
     return () {
       setState(() {
@@ -56,6 +91,36 @@ class _MainPageState extends State<MainPage> {
       });
       Navigator.pop(context);
     };
+  }
+
+  Future<dynamic> getPlantData(search_term) async {
+    http.Response response = await http.get(
+        Uri.parse(
+            'http://localhost:5000/api/v1/user/searchplants/$search_term'),
+        headers: {'Accept': 'Application/json'});
+    // print(response.body);
+    return response.body;
+  }
+
+  List<Plant> plants = [];
+
+  getSearch() {
+    List<dynamic> values = [];
+    values = json.decode(searchBody);
+
+    if (values.length > 0) {
+      for (int i = 0; i < values.length; i++) {
+        if (values[i] != null) {
+          Map<String, dynamic> map = values[i];
+          plants.add(Plant.fromJson(map));
+        }
+      }
+    }
+    for (Plant plant in plants) {
+      // print("Name: ${plant.name}  Approved: ${plant.approved}");
+    }
+    print(plants);
+    return plants;
   }
 
   Icon search = Icon(
@@ -72,25 +137,33 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Color(0xFF4AA96C),
         actions: [
           IconButton(
-            
             onPressed: () {
               setState(() {
                 if (this.search.icon == Icons.search) {
                   this.search = Icon(Icons.cancel);
-                  this.appTit = TextField(
-                    
+                  this.appTit = Container(
+                    height: 50,
+                    child: TextField(
+                      controller: searchController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'search',
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
+                      onChanged: (text) {
+                        searchBody = text!=''?getPlantData(text):null;
+                      },
+                    ),
                   );
                 } else {
                   this.search = Icon(Icons.search);
-                  this.appTit = Text(
-                    'Find Green'
-                  );
+                  this.appTit = Text('Find Green');
                 }
               });
-
+              print(searchController.text);
             },
             icon: search,
-            
           ),
           IconButton(
             onPressed: () {},
@@ -100,7 +173,7 @@ class _MainPageState extends State<MainPage> {
           SizedBox(width: 10),
         ],
       ),
-      body: pages[indexClicked],
+      body: pages[indexClicked],            
       drawer: Drawer(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
