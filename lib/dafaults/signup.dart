@@ -108,7 +108,7 @@ class _SignUpState extends State<SignUp> {
                         print('signed up');
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Home()),
+                          MaterialPageRoute(builder: (context) => Login()),
                         );
                       } else {
                         print('not signed up');

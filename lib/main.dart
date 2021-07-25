@@ -200,7 +200,7 @@ class _MainPageState extends State<MainPage> {
                       height: 10,
                     ),
                     Text(
-                      'simri Mek',
+                      loggedIn? currentUser['currentUserName']: "",
                       style: GoogleFonts.sanchez(
                         fontSize: 15,
                         color: Colors.white,
@@ -211,7 +211,7 @@ class _MainPageState extends State<MainPage> {
                       height: 5,
                     ),
                     Text(
-                      'sim@gmail.com',
+                      loggedIn? currentUser['currentUserEmail']: "",
                       style: GoogleFonts.sanchez(
                         fontSize: 10,
                         color: Colors.white,
