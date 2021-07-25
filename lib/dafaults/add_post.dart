@@ -1,4 +1,9 @@
+import 'package:blue_moon_flatter/dafaults/post.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+final int user_id = 1;
 
 class AddPost extends StatefulWidget {
   const AddPost({ Key? key }) : super(key: key);
@@ -8,6 +13,12 @@ class AddPost extends StatefulWidget {
 }
 
 class _AddPostState extends State<AddPost> {
+
+  final url = 'http://localhost:5000/api/v1';
+  final plantNameController = TextEditingController();
+  final plantImageController = TextEditingController();
+  final plantLocationController = TextEditingController();
+  final plantUseController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -23,7 +34,7 @@ class _AddPostState extends State<AddPost> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     TextFormField(
-                      
+                      controller: plantNameController,
                       decoration: const InputDecoration(
                         labelText: 'Plant Name',
                         labelStyle: TextStyle(
@@ -40,6 +51,7 @@ class _AddPostState extends State<AddPost> {
                     ),
                     SizedBox(height: 10,),
                     TextFormField(
+                      controller: plantImageController,
                       decoration: const InputDecoration(
                         labelText: 'Plant Image',
                         labelStyle: TextStyle(
@@ -56,6 +68,7 @@ class _AddPostState extends State<AddPost> {
                     ),
                     SizedBox(height: 10,),
                     TextFormField(
+                      controller: plantLocationController,
                       decoration: const InputDecoration(
                         labelText: 'Finding Location',
                         labelStyle: TextStyle(
@@ -72,6 +85,7 @@ class _AddPostState extends State<AddPost> {
                     ),
                     SizedBox(height: 10,),
                     TextFormField(
+                      controller: plantUseController,
                       decoration: const InputDecoration(
                         labelText: 'Plant Use',
                         labelStyle: TextStyle(
@@ -100,6 +114,19 @@ class _AddPostState extends State<AddPost> {
                           if (_formKey.currentState!.validate()) {
                             // Process data.
                             // TODO: handle form submit
+                            NewPlantPost newPlantPost = NewPlantPost(name: plantNameController.text, image: plantImageController.text, location: plantLocationController.text, use: plantUseController.text);
+                            createPost(url, body: newPlantPost.toMap())
+                              .then((value) {
+                                if (value != ''){
+                                  print('posted new plant');
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => Post()),
+                                  );
+                                } else {
+                                  print('new plant not posted');
+                                }
+                              });
                           }
                         },
                         child: const Text('Submit for approval'),
@@ -111,4 +138,44 @@ class _AddPostState extends State<AddPost> {
         ),
       ));
   }
+}
+
+
+Future createPost(String url, {required Map body}) async {
+  return http.post(
+      Uri.parse(url + "/user/plant/" + user_id.toString()), 
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(body)
+    ).then((http.Response response) {
+    final int statusCode = response.statusCode;
+
+    if (statusCode < 200 || statusCode > 400 || json == null) {
+      throw new Exception("Error while posting data");
+    }
+    // print("Message returned: " + json.decode(response.body)['message']);
+    // return Posts.fromJson(json.decode(response.body));
+  
+    return json.decode(response.body)['plant_id'];
+  });
+}
+
+class NewPlantPost{
+  final String name;
+  final String image;
+  final String location;
+  final String use;
+
+  NewPlantPost({required this.name, required this.image, required this.location, required this.use});
+
+  Map toMap(){
+    var map = new Map();
+    map['name'] = name;
+    map['location'] = location;
+    map['use'] = use;
+    map['imagePath'] = image;
+    map['approved'] = 'false';
+
+    return map;
+  }
+
 }

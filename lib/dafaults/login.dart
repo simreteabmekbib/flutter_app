@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 var loggedIn = false;
+var userId;
 
 class Login extends StatefulWidget {
 
@@ -12,11 +13,13 @@ class Login extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
+
+final emailController = TextEditingController();
+final passwordController = TextEditingController();
+
 class _LoginState extends State<Login> {
   final url = 'http://localhost:5000/api/v1';
   // final url = 'http://192.168.1.248:5000/api/v1';
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -101,6 +104,10 @@ Future createPost(String url, {required Map body}) async {
     }
     // print("Message returned: " + json.decode(response.body)['message']);
     // return Posts.fromJson(json.decode(response.body));
+    if (json.decode(response.body)['message'] == 'login'){
+      userId = emailController.text;
+    } 
+    
     return json.decode(response.body)['message'];
   });
 }
