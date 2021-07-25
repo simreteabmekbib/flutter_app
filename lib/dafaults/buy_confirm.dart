@@ -1,3 +1,4 @@
+import 'package:blue_moon_flatter/dafaults/delivery_on_the_way.dart';
 import 'package:flutter/material.dart';
 
 class BuyConfirm extends StatelessWidget {
@@ -62,7 +63,10 @@ class BuyConfirm extends StatelessWidget {
                   onPrimary: Color(0xff7BC74D),
                 ),
                 onPressed: () {
-                  
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DeliveryOnTheWay()),
+                  );
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 22.0),
