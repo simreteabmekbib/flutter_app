@@ -1,3 +1,4 @@
+import 'package:blue_moon_flatter/dafaults/home.dart';
 import 'package:flutter/material.dart';
 import 'package:blue_moon_flatter/dafaults/login.dart';
 
@@ -101,7 +102,18 @@ class _SignUpState extends State<SignUp> {
                       phoneNumber: phoneNumber.text,
                       confirmPassword: confirmPassword.text,
                     );
-                    createPost(url, body: post.toMap());
+                    createPost(url, body: post.toMap())
+                    .then((value) {
+                      if (value != ""){
+                        print('signed up');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Home()),
+                        );
+                      } else {
+                        print('not signed up');
+                      }
+                    });
                   },
                   child: Text('Register'),
               ),
@@ -138,7 +150,7 @@ Future createPost(String url, {required Map body}) async {
       Login();
     }
     print("Message returned: " + json.decode(response.body)['username']);
-    return Posts.fromJson(json.decode(response.body));
+    return json.decode(response.body)['username'];
   });
 }
 
