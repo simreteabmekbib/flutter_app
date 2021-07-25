@@ -18,11 +18,12 @@ Widget buildCard(BuildContext context, name, use, imgPath, price) {
             Stack(
               alignment: Alignment.bottomLeft,
               children: [
-                Ink.image(image: 
-                AssetImage(imgPath),
-                height: 100,
-                width: 158,
-                fit: BoxFit.fitWidth,),
+                Image.network(imgPath, width: 158, height: 100, fit: BoxFit.cover,),
+                // Ink.image(image: 
+                // NetworkImage(imgPath),
+                // height: 100,
+                // width: 158,
+                // fit: BoxFit.fitWidth,),
               ],
             ),
             Padding(
@@ -31,7 +32,7 @@ Widget buildCard(BuildContext context, name, use, imgPath, price) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(name),
-                  Text(use.length < 12? use: use.substring(0, 12)),
+                  Text(use.length < 12? use: use.substring(0, 12) + "..."),
                 ],
               ),
             ),
@@ -47,7 +48,7 @@ Widget buildCard(BuildContext context, name, use, imgPath, price) {
                       // To do
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Detail(name: name, use: use, price: price)),
+                        MaterialPageRoute(builder: (context) => Detail(name: name, use: use, price: price, imgPath: imgPath,)),
                       );
                     },
                 ),

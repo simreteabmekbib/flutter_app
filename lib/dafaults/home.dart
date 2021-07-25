@@ -91,7 +91,7 @@ class _HomeState extends State<Home> {
               child: GridView.builder(
                   itemCount: snapshot.data!.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.75, mainAxisSpacing: 10),
-                  itemBuilder: (context, index) => buildCard(context, snapshot.data[index].name, snapshot.data[index].use, 'assets/images/profile.jpg', snapshot.data[index].price),
+                  itemBuilder: (context, index) => buildCard(context, snapshot.data[index].name, snapshot.data[index].use, snapshot.data[index].imgPath, snapshot.data[index].price),
                 ),
             );
           }

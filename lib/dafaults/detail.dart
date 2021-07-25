@@ -4,20 +4,20 @@ import 'package:blue_moon_flatter/dafaults/signup.dart';
 import 'package:flutter/material.dart';
 
 class Detail extends StatelessWidget {
-  final String name, use;
+  final String name, use, imgPath;
   final price;
-  const Detail({ Key? key, required this.name, required this.use, required this.price }) : super(key: key);
+  const Detail({ Key? key, required this.name, required this.use, required this.price, required this.imgPath }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: detailWidget(context, name, use, price),
+      child: detailWidget(context, name, use, price, imgPath),
     );
   }
 }
 
 
-Widget detailWidget(BuildContext context, name, use, price){
+Widget detailWidget(BuildContext context, name, use, price, imgPath){
   return Scaffold(
       appBar: AppBar(
         title: Text(name),
@@ -29,7 +29,7 @@ Widget detailWidget(BuildContext context, name, use, price){
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                 child: Image(
-                  image: AssetImage('assets/images/profile.jpg'),
+                  image: NetworkImage(imgPath),
                   fit: BoxFit.cover,
                   width: 375,
                   height: 180,
