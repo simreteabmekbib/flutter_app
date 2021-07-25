@@ -19,18 +19,20 @@ class Plant {
   String use;
   String approved;
   String imgPath;
+  var price;
 
-  Plant(this.name, this.location, this.use, this.approved, this.imgPath);
+  Plant(this.name, this.location, this.use, this.approved, this.imgPath, this.price);
 
   Plant.fromJson(Map json)
       : name = json['name'],
         location = json['location'],
         use = json['use'],
         approved = json['approved'],
-        imgPath = json['imagePath'];
+        imgPath = json['imagePath'],
+        price = json['price'];
 
   Map toJson() {
-    return {'name': name, 'location': location, 'use': use, 'approved': approved, 'imagePath': imgPath};
+    return {'name': name, 'location': location, 'use': use, 'approved': approved, 'imagePath': imgPath, 'price': price};
   }
 }
 
@@ -65,6 +67,17 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        // toolbarHeight: 36,
+        title: Text(
+          'Home',
+          style: TextStyle(
+            // fontSize: 14,
+          ),
+        ),
+        backgroundColor: Color(0xff7ECA9C),
+      ),
       body: FutureBuilder(
         future: getPlants(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
@@ -78,7 +91,7 @@ class _HomeState extends State<Home> {
               child: GridView.builder(
                   itemCount: snapshot.data!.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.75, mainAxisSpacing: 10),
-                  itemBuilder: (context, index) => buildCard(context, snapshot.data[index].name, snapshot.data[index].use, 'assets/images/profile.jpg'),
+                  itemBuilder: (context, index) => buildCard(context, snapshot.data[index].name, snapshot.data[index].use, 'assets/images/profile.jpg', snapshot.data[index].price),
                 ),
             );
           }

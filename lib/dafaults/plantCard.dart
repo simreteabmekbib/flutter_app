@@ -5,7 +5,7 @@ import 'package:blue_moon_flatter/dafaults/signup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-Widget buildCard(BuildContext context, name, use, imgPath) {
+Widget buildCard(BuildContext context, name, use, imgPath, price) {
   return Center(
     child: Padding(
       padding: const EdgeInsets.all(3),
@@ -43,13 +43,13 @@ Widget buildCard(BuildContext context, name, use, imgPath) {
                 TextButton(
                   child: Text('Detail', 
                     style: TextStyle(color: Color(0xff4AA96C), fontWeight: FontWeight.w400)),
-                  onPressed: () {
-                    // To do
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Detail(name: name,)),
-                    );
-                  },
+                    onPressed: () {
+                      // To do
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Detail(name: name, use: use, price: price)),
+                      );
+                    },
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -61,7 +61,7 @@ Widget buildCard(BuildContext context, name, use, imgPath) {
                     if(loggedIn){
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => BuyConfirm()),
+                        MaterialPageRoute(builder: (context) => BuyConfirm(name: name, price: price,)),
                       );
                     } else {
                       Navigator.push(

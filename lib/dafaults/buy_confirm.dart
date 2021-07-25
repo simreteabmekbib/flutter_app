@@ -2,7 +2,9 @@ import 'package:blue_moon_flatter/dafaults/delivery_on_the_way.dart';
 import 'package:flutter/material.dart';
 
 class BuyConfirm extends StatelessWidget {
-  const BuyConfirm({ Key? key }) : super(key: key);
+  final String name;
+  final price;
+  const BuyConfirm({ Key? key, required this.name, required this.price }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class BuyConfirm extends StatelessWidget {
               ),
               SizedBox(height: 20,),
               Text(
-                'Plant Name',
+                name,
                 style: TextStyle(
                   color: Color(0xff303242),
                   fontSize: 18,
@@ -49,7 +51,7 @@ class BuyConfirm extends StatelessWidget {
               ),
               SizedBox(height: 20,),
               Text(
-                'Plant Price',
+                price.toString(),
                 style: TextStyle(
                   color: Color(0xff303242),
                   fontSize: 18,

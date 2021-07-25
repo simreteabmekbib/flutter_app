@@ -4,19 +4,20 @@ import 'package:blue_moon_flatter/dafaults/signup.dart';
 import 'package:flutter/material.dart';
 
 class Detail extends StatelessWidget {
-  final String name;
-  const Detail({ Key? key, required this.name }) : super(key: key);
+  final String name, use;
+  final price;
+  const Detail({ Key? key, required this.name, required this.use, required this.price }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: detailWidget(context, name),
+      child: detailWidget(context, name, use, price),
     );
   }
 }
 
 
-Widget detailWidget(BuildContext context, name){
+Widget detailWidget(BuildContext context, name, use, price){
   return Scaffold(
       appBar: AppBar(
         title: Text(name),
@@ -37,18 +38,7 @@ Widget detailWidget(BuildContext context, name){
               Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(28.0),
-                    child: Text(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure do',
-                      style: TextStyle(
-                        height: 1.5,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -59,7 +49,7 @@ Widget detailWidget(BuildContext context, name){
                             primary: Color(0xff7BC74D),
                           ),
                           label: Text(
-                            '30 ETB',
+                            '$price ETB',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -75,7 +65,7 @@ Widget detailWidget(BuildContext context, name){
                             if (loggedIn){
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => BuyConfirm()),
+                                MaterialPageRoute(builder: (context) => BuyConfirm(name: name, price: price)),
                               );
                             } else {
                               Navigator.push(
@@ -94,7 +84,18 @@ Widget detailWidget(BuildContext context, name){
                         )
                       ],
                     ),
-                  )
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(28.0),
+                    child: Text( use + 
+                      ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure do',
+                      style: TextStyle(
+                        height: 1.5,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ],
