@@ -1,4 +1,7 @@
+import 'package:blue_moon_flatter/dafaults/buy_confirm.dart';
 import 'package:blue_moon_flatter/dafaults/detail.dart';
+import 'package:blue_moon_flatter/dafaults/login.dart';
+import 'package:blue_moon_flatter/dafaults/signup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +54,17 @@ Widget buildCard(BuildContext context, imgPath) {
               child: Text('Buy', 
               style: TextStyle(color: Color(0xff9FE6A0)),),
               onPressed: () {
-                // To do
+                if(loggedIn){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => BuyConfirm()),
+                  );
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUp()),
+                  );
+                }
               },
             ),
           ],),
