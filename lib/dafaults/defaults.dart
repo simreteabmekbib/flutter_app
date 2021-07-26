@@ -14,6 +14,7 @@ class Defaults {
     'Login',
     'Sign Up',
     'Logout',
+    'Update approval (admin)'
   ];
 
   static final drawerItemIcon = [
@@ -25,5 +26,6 @@ class Defaults {
     Icons.login,
     Icons.arrow_right_alt_rounded,
     Icons.logout,
+    Icons.task,
   ];
 }
