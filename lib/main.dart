@@ -8,9 +8,13 @@ import 'dafaults/post.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import './dafaults/plantCard.dart';
+import 'package:flutter_session/flutter_session.dart';
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  dynamic email = FlutterSession().get('email');
+  print(email);
+  runApp(MaterialApp(home: email == '' ? MyApp() : Login()));
 }
 
 class MyApp extends StatelessWidget {
@@ -78,14 +82,13 @@ class _MainPageState extends State<MainPage> {
     ),
     Login(),
     SignUp(),
-    Center(
-      child: Text('logout'),
-    ),
+    Home(),
   ];
   Function updateState(int index) {
     return () {
       setState(() {
         indexClicked = index;
+        FlutterSession().set('email', '');
       });
       Navigator.pop(context);
     };
@@ -150,7 +153,7 @@ class _MainPageState extends State<MainPage> {
                         fillColor: Colors.white,
                       ),
                       onChanged: (text) {
-                        searchBody = text!=''?getPlantData(text):null;
+                        searchBody = text != '' ? getPlantData(text) : null;
                       },
                     ),
                   );
@@ -171,7 +174,7 @@ class _MainPageState extends State<MainPage> {
           SizedBox(width: 10),
         ],
       ),
-      body: pages[indexClicked],            
+      body: pages[indexClicked],
       drawer: Drawer(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -200,7 +203,7 @@ class _MainPageState extends State<MainPage> {
                       height: 10,
                     ),
                     Text(
-                      loggedIn? currentUser['currentUserName']: "",
+                      loggedIn ? currentUser['currentUserName'] : "",
                       style: GoogleFonts.sanchez(
                         fontSize: 15,
                         color: Colors.white,
@@ -211,7 +214,7 @@ class _MainPageState extends State<MainPage> {
                       height: 5,
                     ),
                     Text(
-                      loggedIn? currentUser['currentUserEmail']: "",
+                      loggedIn ? currentUser['currentUserEmail'] : "",
                       style: GoogleFonts.sanchez(
                         fontSize: 10,
                         color: Colors.white,
