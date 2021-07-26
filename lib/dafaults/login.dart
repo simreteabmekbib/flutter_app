@@ -1,5 +1,6 @@
 import 'package:blue_moon_flatter/dafaults/home.dart';
 import 'package:blue_moon_flatter/dafaults/post.dart';
+import 'package:blue_moon_flatter/main.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_session/flutter_session.dart';
@@ -82,7 +83,7 @@ class _LoginState extends State<Login> {
                         currentUser = value;
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Home()),
+                          MaterialPageRoute(builder: (context) => MyApp()),
                         );
                       } else {
                         print('not logged in');

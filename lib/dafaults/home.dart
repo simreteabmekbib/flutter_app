@@ -6,7 +6,7 @@ import 'login.dart';
 import 'post.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import 'package:flutter_session/flutter_session.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFF7BC74D),
         onPressed: () {
-          if(loggedIn){
+          if(FlutterSession().get('email')!=''){
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => Post()),

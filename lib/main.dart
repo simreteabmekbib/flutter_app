@@ -71,7 +71,7 @@ class Plant {
 class _MainPageState extends State<MainPage> {
   final pages = [
     Home(),
-    loggedIn ? Post() : SignUp(),
+    FlutterSession().get('email') != '' ? Post() : SignUp(),
     Center(
       child: Text('Drafts'),
     ),
@@ -84,7 +84,6 @@ class _MainPageState extends State<MainPage> {
     Login(),
     SignUp(),
     Home(),
-
     UpdateApproval(),
   ];
   Function updateState(int index) {
@@ -206,7 +205,9 @@ class _MainPageState extends State<MainPage> {
                       height: 10,
                     ),
                     Text(
-                      loggedIn ? currentUser['currentUserName'] : "",
+                      FlutterSession().get('email') != ''
+                          ? currentUser['currentUserName']
+                          : 'email',
                       style: GoogleFonts.sanchez(
                         fontSize: 15,
                         color: Colors.white,
@@ -217,7 +218,9 @@ class _MainPageState extends State<MainPage> {
                       height: 5,
                     ),
                     Text(
-                      loggedIn ? currentUser['currentUserEmail'] : "",
+                      FlutterSession().get('email') != ''
+                          ? currentUser['currentUserEmail']
+                          : 'email',
                       style: GoogleFonts.sanchez(
                         fontSize: 10,
                         color: Colors.white,

@@ -4,6 +4,7 @@ import 'package:blue_moon_flatter/dafaults/login.dart';
 import 'package:blue_moon_flatter/dafaults/signup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_session/flutter_session.dart';
 
 Widget buildCard(BuildContext context, name, use, imgPath, price) {
   return Center(
@@ -59,7 +60,7 @@ Widget buildCard(BuildContext context, name, use, imgPath, price) {
                   child: Text('Buy', 
                   style: TextStyle(color: Color(0xff9FE6A0)),),
                   onPressed: () {
-                    if(loggedIn){
+                    if(FlutterSession().get('email')!=''){
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => BuyConfirm(name: name, price: price,)),
