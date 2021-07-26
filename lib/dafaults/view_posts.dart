@@ -16,17 +16,19 @@ class Plant {
   String location;
   String use;
   String approved;
+  String imagePath;
 
-  Plant(this.name, this.location, this.use, this.approved);
+  Plant(this.name, this.location, this.use, this.approved, this.imagePath);
 
   Plant.fromJson(Map json)
       : name = json['name'],
         location = json['location'],
         use = json['use'],
-        approved = json['approved'];
+        approved = json['approved'],
+        imagePath = json['imagePath'];
 
   Map toJson() {
-    return {'name': name, 'location': location, 'use': use, 'approved': approved};
+    return {'name': name, 'location': location, 'use': use, 'approved': approved, 'imagePath': imagePath};
   }
 }
 
@@ -76,7 +78,7 @@ class _ViewPostsState extends State<ViewPosts> {
             return GridView.builder(
               itemCount: snapshot.data!.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.9, mainAxisSpacing: 10),
-              itemBuilder: (context, index) => postCard(snapshot.data[index].name, snapshot.data[index].location, snapshot.data[index].use, snapshot.data[index].approved),
+              itemBuilder: (context, index) => postCard(snapshot.data[index].name, snapshot.data[index].location, snapshot.data[index].use, snapshot.data[index].approved, snapshot.data[index].imagePath),
             );
           }
         },
@@ -92,7 +94,7 @@ class _ViewPostsState extends State<ViewPosts> {
   }
 }
 
-Widget postCard(name, location, String use, approved){
+Widget postCard(name, location, String use, approved, imagePath){
   return Card(
     margin: EdgeInsets.all(10),
     shadowColor: Colors.grey[300],
@@ -104,7 +106,7 @@ Widget postCard(name, location, String use, approved){
       clipBehavior: Clip.antiAliasWithSaveLayer,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/profile.jpg'),
+          image: NetworkImage(imagePath),
           fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.circular(8),
@@ -120,18 +122,14 @@ Widget postCard(name, location, String use, approved){
             children: [
               Text('$name',
                 style: TextStyle(
-                color: Colors.white
+                color: Colors.white,
+                fontSize: 18,
               ),),
               SizedBox(height: 4,),
               Text('$location',
                 style: TextStyle(
-                color: Colors.white
-              ),),
-              SizedBox(height: 4,),
-              Text(
-                use.length < 12? use: use.substring(0, 12),
-              style: TextStyle(
-                color: Colors.white
+                color: Colors.white,
+                fontSize: 12
               ),),
               SizedBox(height: 4,),
               Icon(

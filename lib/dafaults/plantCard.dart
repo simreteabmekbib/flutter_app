@@ -32,8 +32,8 @@ Widget buildCard(BuildContext context, name, use, imgPath, price) {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(name),
-                  Text(use.length < 12? use: use.substring(0, 12) + "..."),
+                  Text(name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                  Text(use.length < 18? use: use.substring(0, 18) + "...", style: TextStyle(fontSize: 13),),
                 ],
               ),
             ),
@@ -44,7 +44,7 @@ Widget buildCard(BuildContext context, name, use, imgPath, price) {
                 children: <Widget>[
                 TextButton(
                   child: Text('Detail', 
-                    style: TextStyle(color: Color(0xff4AA96C), fontWeight: FontWeight.w400)),
+                    style: TextStyle(color: Color(0xff4AA96C), fontWeight: FontWeight.bold,)),
                     onPressed: () {
                       // To do
                       Navigator.push(

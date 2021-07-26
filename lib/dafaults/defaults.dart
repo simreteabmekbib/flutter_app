@@ -8,19 +8,16 @@ class Defaults {
   static final drawerItemText = [
     'Order',
     'Post',
-    'Search',
     'Category',
     'Settings',
     'Login',
     'Sign Up',
-    'Logout',
     'Update approval (admin)'
   ];
 
   static final drawerItemIcon = [
     Icons.shopping_cart,
     Icons.add,
-    Icons.search,
     Icons.category,
     Icons.settings,
     Icons.login,

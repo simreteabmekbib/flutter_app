@@ -56,7 +56,7 @@ class _LoginState extends State<Login> {
                 // hintText: 'Plant Name',
               ),
             ),
-            
+            SizedBox(height: 12,),
             TextFormField(
               controller: passwordController,
               decoration: const InputDecoration(
@@ -90,7 +90,7 @@ class _LoginState extends State<Login> {
                       }
                     });             
                 }, 
-                child: Text('login')),
+                child: Text('Login')),
           ],
         ),
       ),
