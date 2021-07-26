@@ -15,7 +15,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   dynamic email = FlutterSession().get('email');
   print(email);
-  runApp(MaterialApp(home: email == '' ? MyApp() : Login()));
+  runApp(MaterialApp(home: email == '' ? MyApp() : SignUp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -92,7 +92,11 @@ class _MainPageState extends State<MainPage> {
         indexClicked = index;
         FlutterSession().set('email', '');
       });
-      Navigator.pop(context);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => super.widget));
+      // Navigator.pop(context);
     };
   }
 
@@ -207,7 +211,7 @@ class _MainPageState extends State<MainPage> {
                     Text(
                       FlutterSession().get('email') != ''
                           ? currentUser['currentUserName']
-                          : 'email',
+                          : currentUser['currentUserName']='name',
                       style: GoogleFonts.sanchez(
                         fontSize: 15,
                         color: Colors.white,
@@ -220,7 +224,7 @@ class _MainPageState extends State<MainPage> {
                     Text(
                       FlutterSession().get('email') != ''
                           ? currentUser['currentUserEmail']
-                          : 'email',
+                          : currentUser['currentUserEmail']='email',
                       style: GoogleFonts.sanchez(
                         fontSize: 10,
                         color: Colors.white,
