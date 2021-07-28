@@ -9,7 +9,7 @@ class Defaults {
     'Order',
     'Post',
     'Category',
-    'Settings',
+    'Desired',
     'Login',
     'Sign Up',
     'Update approval (admin)'

@@ -2,6 +2,7 @@ import 'package:blue_moon_flatter/dafaults/buy_confirm.dart';
 import 'package:blue_moon_flatter/dafaults/login.dart';
 import 'package:blue_moon_flatter/dafaults/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_session/flutter_session.dart';
 
 class Detail extends StatelessWidget {
   final String name, use, imgPath;
@@ -62,7 +63,7 @@ Widget detailWidget(BuildContext context, name, use, price, imgPath){
                             onPrimary: Color(0xff7BC74D),
                           ),
                           onPressed: () {
-                            if (loggedIn){
+                            if (FlutterSession().get('email').toString() !=''){
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => BuyConfirm(name: name, price: price)),

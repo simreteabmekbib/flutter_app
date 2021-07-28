@@ -6,16 +6,17 @@ import 'package:google_fonts/google_fonts.dart';
 import './dafaults/defaults.dart';
 import './dafaults/home.dart';
 import 'dafaults/post.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http; 
 import 'dart:convert';
 import './dafaults/plantCard.dart';
+import './dafaults/desMain.dart';
 import 'package:flutter_session/flutter_session.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   dynamic email = FlutterSession().get('email');
   print(email);
-  runApp(MaterialApp(home: email == '' ? MyApp() : SignUp()));
+  runApp(MaterialApp(home: email != '' ? MyApp() : SignUp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -75,9 +76,8 @@ class _MainPageState extends State<MainPage> {
     Center(
       child: Text('Categories/filters'),
     ),
-    Center(
-      child: Text('Settings'),
-    ),
+    DesPage(),
+
     Login(),
     SignUp(),
     UpdateApproval(),
@@ -207,8 +207,8 @@ class _MainPageState extends State<MainPage> {
                     ),
                     Text(
                       FlutterSession().get('email') != ''
-                          ? currentUser['currentUserName']
-                          : currentUser['currentUserName']='name',
+                          ? 'sim'
+                          : 'name',
                       style: GoogleFonts.sanchez(
                         fontSize: 15,
                         color: Colors.white,
@@ -220,8 +220,8 @@ class _MainPageState extends State<MainPage> {
                     ),
                     Text(
                       FlutterSession().get('email') != ''
-                          ? currentUser['currentUserEmail']
-                          : currentUser['currentUserEmail']='email',
+                          ? FlutterSession().get('email').toString()
+                          : 'email',
                       style: GoogleFonts.sanchez(
                         fontSize: 10,
                         color: Colors.white,
